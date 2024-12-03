@@ -1,0 +1,580 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "description": "This is a sample API for managing episodes and parts.",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/episodes": {
+            "get": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "Get all episodes",
+                "description": "Retrieve all episodes",
+                "operationId": "42f701049296dd03b82fdc51c121235c",
+                "responses": {
+                    "200": {
+                        "description": "List of episodes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Episode Title"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Episode description goes here"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2024-12-02T12:00:00Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2024-12-02T12:00:00Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "Create a new episode",
+                "description": "Create a new episode in the database",
+                "operationId": "70f2df7ac8654f9ad734d675055484f6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Episode Title"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Episode description goes here"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Episode created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Episode Title"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Episode description goes here"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/episodes/{id}": {
+            "get": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "Get a specific episode",
+                "description": "Retrieve details of a specific episode by ID",
+                "operationId": "5318af3bc35dee5b923ac551cbd2ae4d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Episode details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Episode Title"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Episode description goes here"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Episode not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "Update an episode",
+                "description": "Update the details of a specific episode",
+                "operationId": "8d81b8448be79e2f9106ec815f931b9a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Episode Title"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Episode description goes here"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Episode updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Episode Title"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Episode description goes here"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-12-02T12:00:00Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-12-02T12:00:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Episode not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Episodes"
+                ],
+                "summary": "Delete an episode",
+                "description": "Delete a specific episode by ID",
+                "operationId": "16697938b0116b235491ae69eb208cc0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Episode deleted successfully"
+                    },
+                    "404": {
+                        "description": "Episode not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/episode/{episode}/parts": {
+            "get": {
+                "tags": [
+                    "Parts"
+                ],
+                "summary": "List all parts of an episode",
+                "description": "Get a list of all parts associated with a specific episode.",
+                "operationId": "b4d5c108b3d059bb6f0f610764c136d6",
+                "parameters": [
+                    {
+                        "name": "episode",
+                        "in": "path",
+                        "description": "ID of the episode",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of parts",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "ID of the part",
+                                            "type": "integer"
+                                        },
+                                        "episode_id": {
+                                            "description": "ID of the episode the part belongs to",
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "description": "Title of the part",
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "description": "Description of the part",
+                                            "type": "string"
+                                        },
+                                        "position": {
+                                            "description": "Position of the part within the episode",
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "description": "The timestamp when the part was created",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "The timestamp when the part was last updated",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Episode not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/episode/{episode}/part": {
+            "post": {
+                "tags": [
+                    "Parts"
+                ],
+                "summary": "Add a new part to the episode",
+                "description": "Add a new part to the episode at a specified position.",
+                "operationId": "293c2663abcbbee9b791a79f1b01c6fb",
+                "parameters": [
+                    {
+                        "name": "episode",
+                        "in": "path",
+                        "description": "ID of the episode",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "position": {
+                                        "description": "Position of the part",
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "description": "Title of the part",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Description of the part",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "position": 2,
+                                "title": "New Part",
+                                "description": "A new part added"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Part added successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/episode/{episode}/parts/{part}": {
+            "delete": {
+                "tags": [
+                    "Parts"
+                ],
+                "summary": "Delete a part from the episode",
+                "description": "Delete a specific part from the episode.",
+                "operationId": "02e019399a792a3a994858558e8a21c8",
+                "parameters": [
+                    {
+                        "name": "episode",
+                        "in": "path",
+                        "description": "ID of the episode",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "part",
+                        "in": "path",
+                        "description": "ID of the part to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Part deleted successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/episode/{episode}/parts/update/positions": {
+            "post": {
+                "tags": [
+                    "Parts"
+                ],
+                "summary": "Update positions of multiple parts",
+                "description": "Update the positions of multiple parts within an episode.",
+                "operationId": "00d90466b8132ade42605c35196c2c00",
+                "parameters": [
+                    {
+                        "name": "episode",
+                        "in": "path",
+                        "description": "ID of the episode",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "positions": {
+                                        "type": "array",
+                                        "items": {
+                                            "required": [
+                                                "id",
+                                                "position"
+                                            ],
+                                            "properties": {
+                                                "id": {
+                                                    "description": "ID of the part",
+                                                    "type": "integer"
+                                                },
+                                                "position": {
+                                                    "description": "New position of the part",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "example": [
+                                            {
+                                                "id": 1,
+                                                "position": 2
+                                            },
+                                            {
+                                                "id": 5,
+                                                "position": 3
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Positions updated successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/episode/{episode}/parts/reorder": {
+            "post": {
+                "tags": [
+                    "Parts"
+                ],
+                "summary": "Reorder all parts in the episode",
+                "description": "Reorder all parts in the episode based on their new positions.",
+                "operationId": "1641a7782058106da00d4a14948a0e7a",
+                "parameters": [
+                    {
+                        "name": "episode",
+                        "in": "path",
+                        "description": "ID of the episode",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Parts reordered successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Episodes",
+            "description": "Episodes"
+        },
+        {
+            "name": "Parts",
+            "description": "Parts"
+        }
+    ]
+}
